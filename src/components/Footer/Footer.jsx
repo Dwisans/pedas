@@ -16,7 +16,7 @@ export default function Footer() {
               Antar cepat se-Jember, atau tunggu pesananku dingin sebelum sampai.
             </p>
           </div>
-          <a href="https://wa.me/" target="_blank" rel="noreferrer" className={styles.ctaBtn}>
+          <a href="https://wa.me/62895384845837" target="_blank" rel="noreferrer" className={styles.ctaBtn}>
             <FiMessageCircle />
             Order via WhatsApp
           </a>

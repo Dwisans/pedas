@@ -39,7 +39,7 @@ function ProductCard({ product, index }) {
         <div className={styles.bottom}>
           <span className={styles.price}>Rp{product.price.toLocaleString("id-ID")}</span>
           <a
-            href="https://wa.me/"
+            href="https://wa.me/62895384845837"
             target="_blank"
             rel="noreferrer"
             className={styles.buy}
@@ -73,7 +73,7 @@ export default function ProductMenu() {
 
         <p className={styles.note}>
           Mau varian lain? Kabarin aja, kami racik khusus buat kamu.
-          <a href="https://wa.me/" target="_blank" rel="noreferrer" className={styles.custom}>
+          <a href="https://wa.me/62895384845837" target="_blank" rel="noreferrer" className={styles.custom}>
             Request Menu →
           </a>
         </p>

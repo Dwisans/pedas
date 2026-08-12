@@ -43,7 +43,7 @@ export default function Navbar() {
 
         <div className={styles.actions}>
           <a
-            href="https://wa.me/"
+            href="https://wa.me/62895384845837"
             target="_blank"
             rel="noreferrer"
             className={styles.cta}
