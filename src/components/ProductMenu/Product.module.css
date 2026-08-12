@@ -1,0 +1,208 @@
+.menu {
+  padding: 100px 0 90px;
+}
+
+.head {
+  max-width: 640px;
+  margin-bottom: 52px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.card {
+  position: relative;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(234, 88, 12, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  animation: cardIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--i) * 0.16s + 0.1s);
+}
+
+.card:hover {
+  transform: translateY(-10px) rotate(-0.5deg);
+  box-shadow: 0 40px 70px -26px rgba(220, 38, 38, 0.45);
+}
+
+.art {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background:
+    radial-gradient(480px 240px at 50% 0%, rgba(246, 178, 61, 0.28), transparent 70%),
+    var(--background);
+  border-bottom: 2px dashed rgba(234, 88, 12, 0.16);
+  aspect-ratio: 1.05;
+}
+
+.art svg {
+  width: 92%;
+  height: auto;
+  filter: drop-shadow(0 24px 26px rgba(124, 45, 18, 0.18));
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card:hover .art svg {
+  transform: scale(1.06) rotate(2deg);
+}
+
+.badge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 2;
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 10px 20px -8px rgba(220, 38, 38, 0.5);
+  letter-spacing: 0.02em;
+}
+
+.body {
+  padding: 24px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--secondary);
+  background: var(--secondary-glow);
+  border-radius: var(--radius-pill);
+  padding: 6px 12px;
+  margin-bottom: 12px;
+}
+
+.flame {
+  width: 16px;
+  height: 16px;
+  color: var(--primary);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: 25px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.desc {
+  font-size: 14.5px;
+  color: var(--ink-80);
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.price {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--secondary);
+  white-space: nowrap;
+}
+
+.price::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.buy {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 12px 18px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 12px 26px -12px var(--primary-glow);
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  white-space: nowrap;
+}
+
+.buy:hover {
+  background: var(--primary-600);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px -12px rgba(220, 38, 38, 0.5);
+}
+
+.buy svg {
+  font-size: 17px;
+  transition: transform 0.25s ease;
+}
+
+.buy:hover svg {
+  transform: translateX(2px) rotate(-8deg);
+}
+
+.note {
+  margin-top: 44px;
+  text-align: center;
+  font-size: 15px;
+  color: var(--ink-60);
+}
+
+.custom {
+  display: inline-block;
+  margin-left: 10px;
+  font-weight: 800;
+  color: var(--primary);
+  border-bottom: 2px solid rgba(220, 38, 38, 0.35);
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.custom:hover {
+  color: var(--secondary);
+  border-color: var(--secondary);
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin-inline: auto;
+  }
+}
