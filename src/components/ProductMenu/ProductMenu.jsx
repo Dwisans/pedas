@@ -1,4 +1,4 @@
-import { FiShoppingBag } from "react-icons/fi";
+import { FiShoppingBag, FiSearch } from "react-icons/fi";
 import { products } from "../../data/products.js";
 import { productArt } from "../../assets/illustrations.jsx";
 import styles from "./Product.module.css";
@@ -53,7 +53,14 @@ function ProductCard({ product, index }) {
   );
 }
 
-export default function ProductMenu() {
+export default function ProductMenu({ query = "" }) {
+  const q = query.trim().toLowerCase();
+  const filtered = q
+    ? products.filter((p) =>
+        (p.name + " " + p.baseLevel + " " + p.desc).toLowerCase().includes(q)
+      )
+    : products;
+
   return (
     <section className={styles.menu} id="menu">
       <div className="container">
@@ -66,10 +73,33 @@ export default function ProductMenu() {
         </div>
 
         <div className={styles.grid}>
-          {products.map((p, i) => (
+          {filtered.map((p, i) => (
             <ProductCard key={p.id} product={p} index={i} />
           ))}
         </div>
+
+        {filtered.length === 0 && (
+          <div className={styles.noResult}>
+            <div className={styles.noResultIcon}>
+              <FiSearch />
+            </div>
+            <h3 className={styles.noResultTitle}>
+              Tidak ada menu "{query.trim()}"
+            </h3>
+            <p className={styles.noResultSub}>
+              Coba kata kunci lain, misal "basreng" atau "keripik". Atau kabarin
+              kami biar diracik khusus buat kamu.
+            </p>
+            <a
+              href="https://wa.me/62895384845837"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.noResultCta}
+            >
+              Request Menu Kustom →
+            </a>
+          </div>
+        )}
 
         <p className={styles.note}>
           Mau varian lain? Kabarin aja, kami racik khusus buat kamu.

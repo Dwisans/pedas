@@ -1,6 +1,7 @@
-import { memo, useState } from "react";
+import { memo } from "react";
 import { FiSearch, FiArrowUpRight, FiMapPin } from "react-icons/fi";
 import { productArt } from "../../assets/illustrations.jsx";
+import { products } from "../../data/products.js";
 import styles from "./Hero.module.css";
 
 const HeroVisual = memo(function HeroVisual() {
@@ -23,14 +24,28 @@ const HeroVisual = memo(function HeroVisual() {
   );
 });
 
-function SearchBar() {
-  const [query, setQuery] = useState("");
+function SearchBar({ query, onQuery }) {
+  const q = query.trim().toLowerCase();
+  const suggestions = q
+    ? products.filter((p) =>
+        (p.name + " " + p.baseLevel + " " + p.desc).toLowerCase().includes(q)
+      )
+    : [];
 
   const submit = (e) => {
     e.preventDefault();
-    if (query.trim()) {
+    if (q) {
+      onQuery(query);
       document.getElementById("menu")?.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const pick = (p) => {
+    onQuery(p.name);
+    document.getElementById(`product-${p.id}`)?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
   };
 
   return (
@@ -38,19 +53,35 @@ function SearchBar() {
       <FiSearch className={styles.searchIcon} />
       <input
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => onQuery(e.target.value)}
         type="search"
         placeholder="Cari jajanan favoritmu di sini..."
         aria-label="Cari jajanan"
+        autoComplete="off"
       />
       <button type="submit" aria-label="Cari">
         <FiArrowUpRight />
       </button>
+
+      {suggestions.length > 0 && (
+        <ul className={styles.suggestions}>
+          {suggestions.map((p) => (
+            <li key={p.id}>
+              <button type="button" onClick={() => pick(p)}>
+                <span className={styles.sugName}>{p.name}</span>
+                <span className={styles.sugMeta}>
+                  Level {p.baseLevel} · Rp{p.price.toLocaleString("id-ID")}
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </form>
   );
 }
 
-export default function Hero() {
+export default function Hero({ query, onQuery }) {
   return (
     <section className={styles.hero} id="top">
       <div className={styles.blob} aria-hidden="true" />
@@ -84,7 +115,7 @@ export default function Hero() {
             nugas kamu.
           </p>
 
-          <SearchBar />
+          <SearchBar query={query} onQuery={onQuery} />
 
           <div className={styles.meta}>
             <div className={styles.rating}>
