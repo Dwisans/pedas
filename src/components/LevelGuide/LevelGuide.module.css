@@ -226,13 +226,36 @@
 
   .top {
     flex-wrap: wrap;
+    gap: 14px;
   }
 
   .gauge {
     height: 90px;
+    width: 30px;
   }
 
   .emojis {
     margin-top: 4px;
+  }
+
+  .name {
+    font-size: 23px;
+  }
+
+  .example {
+    width: auto;
+    max-width: 100%;
+    text-align: left;
+  }
+}
+
+@media (hover: none) {
+  .card:hover {
+    transform: none;
+    box-shadow: 0 16px 40px -22px rgba(220, 38, 38, 0.28);
+  }
+
+  .card:hover::after {
+    transform: scale(1);
   }
 }

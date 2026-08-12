@@ -21,7 +21,7 @@ export default function Navbar() {
 
   return (
     <header className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}>
-      <nav className={`${styles.inner} container`}>
+      <nav className={styles.inner}>
         <a href="#top" className={styles.logo} onClick={() => setOpen(false)}>
           <span className={styles.logoMark}>°</span>
           Pedas<span>.in</span>
@@ -48,7 +48,7 @@ export default function Navbar() {
             rel="noreferrer"
             className={styles.cta}
           >
-            Pesan Sekarang
+            <span>Pesan Sekarang</span>
             <FiArrowRight />
           </a>
         </div>

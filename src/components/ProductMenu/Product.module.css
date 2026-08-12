@@ -206,3 +206,31 @@
     margin-inline: auto;
   }
 }
+
+@media (max-width: 400px) {
+  .body {
+    padding: 20px 18px;
+  }
+
+  .bottom {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .buy {
+    flex: 1;
+    justify-content: center;
+    padding: 12px 14px;
+  }
+}
+
+@media (hover: none) {
+  .card:hover {
+    transform: none;
+    box-shadow: var(--card-shadow);
+  }
+
+  .card:hover .art svg {
+    transform: none;
+  }
+}
